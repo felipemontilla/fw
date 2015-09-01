@@ -1,43 +1,35 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<h:head>
+
+<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<title><ui:insert name="title">
 			Fast Waiter
 		</ui:insert></title>
-	<h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css" />
-	<h:outputStylesheet library="bootstrap/css"
-		name="bootstrap-theme.min.css" />
-	<h:outputScript library="bootstrap/js" name="bootstrap.min.js" />
-	<h:outputScript library="jquery" name="jquery-1.11.3.min.js" />
+		
+	<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css"/>
 
-	<script>
-        $a = jQuery.noConflict();
-        $a(document).ready(function() {
-            var heightWindow = $a(window).height();
-            var heightBody   = document.body.clientHeight;
-            if(heightWindow > heightBody){
-                $a("#footer").css('position', 'fixed');
-                $a("#footer").css('bottom', '0');
-            }                
-        });
-    </script>
-</h:head>
+</head>
 
-<h:body>
-	<div>
-		<ui:insert name="nav_bar">
+<body>
+	<script src="../resources/bootstrap/js/bootstrap.min.js" />
+	<script src="../resources/jquery/jquery-1.11.3.min.js" />
+	
+	<div id="header">
+		<ui:insert name="header">
 			<ui:include src="/template/menu.xhtml" />
 		</ui:insert>
 	</div>
 
-	<div class="container-fluid">
+	<div class="container-fluid" id="container">
 		<ui:insert name="container">
 		</ui:insert>
 	</div>
-</h:body>
+</body>
 </html>

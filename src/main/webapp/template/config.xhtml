@@ -5,14 +5,31 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <f:view>
-	<h:head>
-		<title>Fast Waiter</title>
-		<link href="../../resources/css/bootstrap.min.css" rel="stylesheet"></link>
-	</h:head>
-	<body>
+	<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
+	
+	<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
+	<h:outputScript library="jquery" name="jquery-1.11.3.min.js" />
+	
+	
+		<title><ui:insert name="title">
+			Fast Waiter
+		</ui:insert></title>
+		<link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+	<h:body>
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script src="../../resources/js/bootstrap.min.js"></script>
-	</body>
+		<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+		<script>
+        $a = jQuery.noConflict();
+        $a(document).ready(function() {
+            var heightWindow = $a(window).height();
+            var heightBody   = document.body.clientHeight;
+            if(heightWindow > heightBody){
+                $a("#footer").css('position', 'fixed');
+                $a("#footer").css('bottom', '0');
+            }                
+        });
+		</script>
+	</h:body>
 </f:view>
 </html>
