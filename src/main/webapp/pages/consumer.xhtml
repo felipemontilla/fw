@@ -1,51 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<h:head></h:head>
-<h:body>
-	<h:form id="formConsumer">
-		<h:panelGrid columns="10">
-			<h:inputHidden value="#{consumerBean.consumer.id}" />
-			<h:outputText value="Nome" />
-			<h:inputText value="#{consumerBean.consumer.name}" />
-			<h:outputText value="CPF" />
-			<h:inputText value="#{consumerBean.consumer.cpf}" />
-			<h:outputText value="E-mail" />
-			<h:inputText value="#{consumerBean.consumer.mail}" />
-			<h:outputText value="Celular" />
-			<h:inputText value="#{consumerBean.consumer.phone}" />
-			<h:commandButton value="Salvar" action="#{consumerBean.salvar()}" />
-		</h:panelGrid>
-	</h:form>
-	<h:form id="tableConsumer">
-		<h:dataTable value="#{consumerBean.consumersList}" var="consumer">
-			<h:column>
-				<f:facet name="header">Nome</f:facet>
+<ui:composition template="/layout/template.xhtml">
+	<ui:define name="content">
+		<h:form id="formConsumer">
+			<h:panelGrid columns="10">
+				<h:inputHidden value="#{consumerBean.consumer.id}" />
+				<h:outputText value="Nome" />
+				<h:inputText value="#{consumerBean.consumer.name}" />
+				<h:outputText value="CPF" />
+				<h:inputText value="#{consumerBean.consumer.cpf}" />
+				<h:outputText value="E-mail" />
+				<h:inputText value="#{consumerBean.consumer.mail}" />
+				<h:outputText value="Celular" />
+				<h:inputText value="#{consumerBean.consumer.phone}" />
+				<h:commandButton value="Salvar" action="#{consumerBean.salvar()}" />
+			</h:panelGrid>
+		</h:form>
+		<h:form id="tableConsumer">
+			<h:dataTable value="#{consumerBean.consumersList}" var="consumer">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
 				#{consumer.name}
 			</h:column>
-			<h:column>
-				<f:facet name="header">CPF</f:facet>
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
 				#{consumer.cpf}
 			</h:column>
-			<h:column>
-				<f:facet name="header">E-mail</f:facet>
+				<h:column>
+					<f:facet name="header">E-mail</f:facet>
 				#{consumer.mail}
 			</h:column>
-			<h:column>
-				<f:facet name="header">Celular</f:facet>
+				<h:column>
+					<f:facet name="header">Celular</f:facet>
 				#{consumer.phone}
 			</h:column>
-			<h:column>
-				<h:commandButton value="Editar">
-					<f:ajax execute="@this" render=":formConsumer" />
-					<f:setPropertyActionListener value="#{consumer}"
-						target="#{consumerBean.consumer}" />
-				</h:commandButton>
-			</h:column>
-		</h:dataTable>
-	</h:form>
-</h:body>
+				<h:column>
+					<h:commandButton value="Editar">
+						<f:ajax execute="@this" render=":formConsumer" />
+						<f:setPropertyActionListener value="#{consumer}"
+							target="#{consumerBean.consumer}" />
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

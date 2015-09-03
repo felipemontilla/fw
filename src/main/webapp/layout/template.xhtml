@@ -6,22 +6,26 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<f:view>
-	<h:head>
-		<title><ui:insert name="title">FW</ui:insert></title>
-		<h:outputStylesheet library="bootstrap" name="css/bootstrap.min.css" />
-	</h:head>
-	<body>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>FW</title>
+	<link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+	<div>
 		<ui:insert name="header">
-			<ui:include src="/layout/menu.xhtml" />
+			<ui:include src="/layout/menu.xhtml" />	
 		</ui:insert>
+	</div>
+
+	<div class="container-fluid">
 		<ui:insert name="content"></ui:insert>
-		
-		<!--Scripts -->
-		<h:outputScript library="bootstrap" name="js/bootstrap.min.js" />
-		<script type="text/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
-        </script>
-	</body>
-</f:view>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
 </html>
