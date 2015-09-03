@@ -6,15 +6,11 @@
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<ui:composition template="/template/template.xhtml">
-	<ui:define name="title">Teste</ui:define>
-	<ui:define name="header">
-		<ui:include src="/template/menu.xhtml" />
-	</ui:define>
+<ui:composition template="/layout/template.xhtml">
 	<ui:define name="content">
-			testeteste
-			<h:form>
-			<h:commandLink action="pages/consumer" value="Cliente" type="button" />
+		testeteste
+		<h:form>
+			<h:commandLink action="pages/consumer" value="Cliente" type="button"/>
 		</h:form>
 	</ui:define>
 </ui:composition>
