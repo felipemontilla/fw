@@ -7,48 +7,62 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition template="/layout/template.xhtml">
+	<ui:define name="navbar-left">
+		<div class="navbar-default">
+			<ul class="nav nav-pills nav-stacked" style="padding: 0px;">
+				<li role="presentation" class="active"><a href="consumer.jsf">Clientes</a></li>
+				<li role="presentation"><a href="products.jsf">Produtos</a></li>
+			</ul>
+		</div>
+	</ui:define>
 	<ui:define name="content">
-		<h:form id="formConsumer">
-			<h:panelGrid columns="10">
-				<h:inputHidden value="#{consumerBean.consumer.id}" />
-				<h:outputText value="Nome" />
-				<h:inputText value="#{consumerBean.consumer.name}" />
-				<h:outputText value="CPF" />
-				<h:inputText value="#{consumerBean.consumer.cpf}" />
-				<h:outputText value="E-mail" />
-				<h:inputText value="#{consumerBean.consumer.mail}" />
-				<h:outputText value="Celular" />
-				<h:inputText value="#{consumerBean.consumer.phone}" />
-				<h:commandButton value="Salvar" action="#{consumerBean.salvar()}" />
-			</h:panelGrid>
-		</h:form>
-		<h:form id="tableConsumer">
-			<h:dataTable value="#{consumerBean.consumersList}" var="consumer">
-				<h:column>
-					<f:facet name="header">Nome</f:facet>
+		<ol class="breadcrumb">
+			<li><a href="#">Cadastros</a></li>
+			<li class="active"><a href="#">Clientes</a></li>
+		</ol>
+		<div class="container-fluid">
+			<h:form id="formConsumer">
+				<h:panelGrid columns="10">
+					<h:inputHidden value="#{consumerBean.consumer.id}" />
+					<h:outputText value="Nome" />
+					<h:inputText value="#{consumerBean.consumer.name}" />
+					<h:outputText value="CPF" />
+					<h:inputText value="#{consumerBean.consumer.cpf}" />
+					<h:outputText value="E-mail" />
+					<h:inputText value="#{consumerBean.consumer.mail}" />
+					<h:outputText value="Celular" />
+					<h:inputText value="#{consumerBean.consumer.phone}" />
+					<h:commandButton value="Salvar" action="#{consumerBean.salvar()}" />
+				</h:panelGrid>
+			</h:form>
+			<h:form id="tableConsumer">
+				<h:dataTable value="#{consumerBean.consumersList}" var="consumer">
+					<h:column>
+						<f:facet name="header">Nome</f:facet>
 				#{consumer.name}
 			</h:column>
-				<h:column>
-					<f:facet name="header">CPF</f:facet>
+					<h:column>
+						<f:facet name="header">CPF</f:facet>
 				#{consumer.cpf}
 			</h:column>
-				<h:column>
-					<f:facet name="header">E-mail</f:facet>
+					<h:column>
+						<f:facet name="header">E-mail</f:facet>
 				#{consumer.mail}
 			</h:column>
-				<h:column>
-					<f:facet name="header">Celular</f:facet>
+					<h:column>
+						<f:facet name="header">Celular</f:facet>
 				#{consumer.phone}
 			</h:column>
-				<h:column>
-					<h:commandButton value="Editar">
-						<f:ajax execute="@this" render=":formConsumer" />
-						<f:setPropertyActionListener value="#{consumer}"
-							target="#{consumerBean.consumer}" />
-					</h:commandButton>
-				</h:column>
-			</h:dataTable>
-		</h:form>
+					<h:column>
+						<h:commandButton value="Editar">
+							<f:ajax execute="@this" render=":formConsumer" />
+							<f:setPropertyActionListener value="#{consumer}"
+								target="#{consumerBean.consumer}" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

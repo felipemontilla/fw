@@ -7,21 +7,27 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>FW</title>
-	<link href="../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FW</title>
+<link href="../resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet" />
 </head>
 <body>
-	<div>
+	<div style="margin-bottom: 0px;">
 		<ui:insert name="header">
-			<ui:include src="/layout/menu.xhtml" />	
+			<ui:include src="/layout/menu.xhtml" />
 		</ui:insert>
 	</div>
 
-	<div class="container-fluid">
-		<ui:insert name="content"></ui:insert>
+	<div>
+		<div id="navbar-left" style="width: 200px; position: absolute; margin-top: 0px !important; height: 94%; background: #f8f8f8;">
+			<ui:insert name="navbar-left"></ui:insert>
+		</div>
+		<div id="content" style="margin-left: 200px;">
+			<ui:insert name="content"></ui:insert>
+		</div>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
