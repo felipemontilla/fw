@@ -21,43 +21,113 @@
 			<li class="active"><a href="#">Clientes</a></li>
 		</ol>
 		<div class="container-fluid">
-			<h:form id="formConsumer">
-				<h:panelGrid columns="10">
-					<h:inputHidden value="" />
-					<h:outputText value="Nome" />
-					<h:inputText value="" />
-					<h:outputText value="CPF" />
-					<h:inputText value="" />
-					<h:outputText value="E-mail" />
-					<h:inputText value="" />
-					<h:outputText value="Celular" />
-					<h:inputText value="" />
-					<h:commandButton value="Salvar" />
-				</h:panelGrid>
-			</h:form>
+
+			<div style="margin-bottom: 20px;">
+				<h:form styleClass="form-inline">
+					<div class="form-group">
+						<h:commandLink title="Adicionar" styleClass="btn btn-default">
+							<span class="glyphicon glyphicon-plus" /> Novo
+							<f:ajax render=":formConsumer" />
+							<f:passThroughAttribute name="data-toggle" value="modal" />
+							<f:passThroughAttribute name="data-target" value="#modalConsumer" />
+						</h:commandLink>
+					</div>
+					<div class="form-group">
+						<h:commandLink title="Imprimir" styleClass="btn btn-default">
+							<span class="glyphicon glyphicon-print" /> Imprimir
+						</h:commandLink>
+					</div>
+				</h:form>
+			</div>
+
 			<h:form id="tableConsumer">
-				<h:dataTable>
+				<h:dataTable styleClass="table table-bordered table-hover"
+					value="#{consumerBean.consumersList}" var="consumer">
+					<h:column>
+						<f:facet name="header">ID</f:facet>
+						#{consumer.id}
+					</h:column>
 					<h:column>
 						<f:facet name="header">Nome</f:facet>
-			</h:column>
+						#{consumer.name}
+					</h:column>
 					<h:column>
 						<f:facet name="header">CPF</f:facet>
-			</h:column>
-					<h:column>
-						<f:facet name="header">E-mail</f:facet>
-			</h:column>
+						#{consumer.cpf}
+					</h:column>
 					<h:column>
 						<f:facet name="header">Celular</f:facet>
-			</h:column>
+						#{consumer.phone}
+					</h:column>
 					<h:column>
-						<h:commandButton value="Editar">
+						<f:facet name="header">E-mail</f:facet>
+						#{consumer.mail}
+					</h:column>
+					<h:column>
+						<h:commandLink value="Editar">
 							<f:ajax execute="@this" render=":formConsumer" />
+							<f:passThroughAttribute name="data-toggle" value="modal" />
+							<f:passThroughAttribute name="data-target" value="#modalConsumer" />
 							<f:setPropertyActionListener value="#{consumer}"
 								target="#{consumerBean.consumer}" />
-						</h:commandButton>
+						</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</h:form>
+		</div>
+
+		<!-- Modal Consumer -->
+		<div class="modal fade" id="modalConsumer">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h:form>
+							<h:commandLink styleClass="close" value="&times;">
+								<f:ajax render=":formConsumer" />
+								<f:passThroughAttribute name="aria-hidden" value="true" />
+								<f:passThroughAttribute name="data-dismiss" value="modal" />
+								<f:passThroughAttribute name="aria-label" value="Close" />
+							</h:commandLink>
+						</h:form>
+						<h4 class="modal-title" id="myModalLabel">Clientes</h4>
+					</div>
+					<h:form id="formConsumer">
+						<div class="modal-body">
+							<div class="row">
+								<div class="form-group">
+									<h:inputHidden value="#{consumerBean.consumer.id}" />
+								</div>
+								<div class="form-group col-md-12">
+									<h:outputText value="Nome" />
+									<h:inputText value="#{consumerBean.consumer.name}"
+										styleClass="form-control" />
+								</div>
+								<div class="form-group col-md-6">
+									<h:outputText value="CPF" />
+									<h:inputText value="#{consumerBean.consumer.cpf}"
+										styleClass="form-control" />
+								</div>
+								<div class="form-group col-md-6">
+									<h:outputText value="Celular" />
+									<h:inputText value="#{consumerBean.consumer.phone}"
+										styleClass="form-control" />
+								</div>
+								<div class="form-group col-md-12">
+									<h:outputText value="E-mail" />
+									<h:inputText value="#{consumerBean.consumer.mail}"
+										styleClass="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<h:commandLink action="#{consumerBean.salvar()}"
+								styleClass="btn btn-primary">
+								<span class="glyphicon glyphicon-ok" /> Salvar
+							</h:commandLink>
+						</div>
+					</h:form>
+				</div>
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>
