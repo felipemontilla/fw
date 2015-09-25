@@ -5,9 +5,12 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:b="http://bootsfaces.net/ui">
 
-<ui:composition template="/layout/template.xhtml">
-	<ui:define name="sidebar">
-		<ui:include src="/layout/sidebarConsumer.xhtml" />
-	</ui:define>
+<ui:composition>
+	<b:panel look="primary" title="Cadastros">
+		<b:listLinks>
+			<b:navLink value="Cliente" outcome="consumer.jsf" />
+			<b:navLink value="Produto" />
+		</b:listLinks>
+	</b:panel>
 </ui:composition>
 </html>
