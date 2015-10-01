@@ -3,7 +3,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:b="http://bootsfaces.net/ui">
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/layout/template.xhtml">
 	<ui:define name="sidebar">
@@ -11,95 +12,79 @@
 	</ui:define>
 	<ui:define name="content">
 		<b:panel look="default" title="Clientes">
-			<h:form styleClass="form-inline" style="margin-bottom:15px;">
-				<div class="form-group">
-					<h:commandLink title="Adicionar" styleClass="btn btn-default">
-						<span class="glyphicon glyphicon-plus" /> Novo
-							<f:ajax render=":formConsumer" />
-						<f:passThroughAttribute name="data-toggle" value="modal" />
-						<f:passThroughAttribute name="data-target" value="#modalConsumer" />
-					</h:commandLink>
-				</div>
-				<div class="form-group">
-					<h:commandLink title="Imprimir" styleClass="btn btn-default">
-						<span class="glyphicon glyphicon-print" /> Imprimir
-						</h:commandLink>
-				</div>
-			</h:form>
+			<div style="margin-bottom: 15px;">
+				<b:buttonToolbar>
+					<b:buttonGroup>
+						<b:button value="Novo" icon="plus" pt:data-target="#modalConsumer" pt:data-toogle="modal" onclick="return false;"></b:button>
+					</b:buttonGroup>
+					<b:buttonGroup>
+						<b:button value="Imprimir" icon="print"></b:button>
+					</b:buttonGroup>
+				</b:buttonToolbar>
+			</div>
 
-			<h:form id="tableConsumer">
-				<h:dataTable styleClass="table table-bordered table-hover">
-					<h:column>
-						<f:facet name="header">ID</f:facet>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Nome</f:facet>
-					</h:column>
-					<h:column>
-						<f:facet name="header">CPF</f:facet>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Celular</f:facet>
-					</h:column>
-					<h:column>
-						<f:facet name="header">E-mail</f:facet>
-					</h:column>
-					<h:column>
-						<h:commandLink value="Editar">
-							<f:ajax execute="@this" render=":formConsumer" />
-							<f:passThroughAttribute name="data-toggle" value="modal" />
-							<f:passThroughAttribute name="data-target" value="#modalConsumer" />
-						</h:commandLink>
-					</h:column>
-				</h:dataTable>
-			</h:form>
+			<div class="table-responsive">
+				<h:form id="tableConsumer">
+					<h:dataTable styleClass="table table-striped">
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">CPF</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Celular</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">E-mail</f:facet>
+						</h:column>
+						<h:column>
+							<h:commandLink value="Editar">
+								<f:ajax execute="@this" render=":formConsumer" />
+								<f:passThroughAttribute name="data-toggle" value="modal" />
+								<f:passThroughAttribute name="data-target"
+									value="#modalConsumer" />
+							</h:commandLink>
+						</h:column>
+					</h:dataTable>
+				</h:form>
+			</div>
 		</b:panel>
 
 		<!-- Modal Consumer -->
-		<div class="modal fade" id="modalConsumer">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h:form>
-							<h:commandLink styleClass="close" value="&times;">
-								<f:ajax render=":formConsumer" />
-								<f:passThroughAttribute name="aria-hidden" value="true" />
-								<f:passThroughAttribute name="data-dismiss" value="modal" />
-								<f:passThroughAttribute name="aria-label" value="Close" />
-							</h:commandLink>
-						</h:form>
-						<h4 class="modal-title" id="myModalLabel">Clientes</h4>
+		<b:modal id="modalConsumer" title="Clientes"
+			styleClass="modalPseudoClass">
+			<h:form id="formConsumer">
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-group col-md-12">
+							<h:outputText value="Nome" />
+							<h:inputText value="" styleClass="form-control" />
+						</div>
+						<div class="form-group col-md-6">
+							<h:outputText value="CPF" />
+							<h:inputText value="" styleClass="form-control" />
+						</div>
+						<div class="form-group col-md-6">
+							<h:outputText value="Celular" />
+							<h:inputText value="" styleClass="form-control" />
+						</div>
+						<div class="form-group col-md-12">
+							<h:outputText value="E-mail" />
+							<h:inputText value="" styleClass="form-control" />
+						</div>
 					</div>
-					<h:form id="formConsumer">
-						<div class="modal-body">
-							<div class="row">
-								<div class="form-group col-md-12">
-									<h:outputText value="Nome" />
-									<h:inputText value="" styleClass="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<h:outputText value="CPF" />
-									<h:inputText value="" styleClass="form-control" />
-								</div>
-								<div class="form-group col-md-6">
-									<h:outputText value="Celular" />
-									<h:inputText value="" styleClass="form-control" />
-								</div>
-								<div class="form-group col-md-12">
-									<h:outputText value="E-mail" />
-									<h:inputText value="" styleClass="form-control" />
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<h:commandLink styleClass="btn btn-primary">
-								<span class="glyphicon glyphicon-ok" /> Salvar
-							</h:commandLink>
-						</div>
-					</h:form>
 				</div>
-			</div>
-		</div>
+				<div class="modal-footer">
+					<h:commandLink styleClass="btn btn-primary">
+						<span class="glyphicon glyphicon-ok" /> Salvar
+							</h:commandLink>
+				</div>
+			</h:form>
+		</b:modal>
 	</ui:define>
 </ui:composition>
 </html>
